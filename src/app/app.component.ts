@@ -1,3 +1,4 @@
+import { SettingsService } from './services/service.index';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(
+    public settingsService: SettingsService
+  ) {}
 }
