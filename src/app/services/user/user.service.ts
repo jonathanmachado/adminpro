@@ -1,3 +1,4 @@
+import { UploadFileService } from './../uploadFile/upload-file.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { User } from '../../models/user.model';
@@ -12,8 +13,11 @@ export class UserService {
   user: User;
   token: string;
 
-  constructor(public http: HttpClient, public router: Router) {
-    console.log(true);
+  constructor(
+    public http: HttpClient,
+    public router: Router,
+    public uploadFileService: UploadFileService
+  ) {
     this.setStorage();
   }
 
@@ -23,6 +27,29 @@ export class UserService {
       swal('El usuario ha sido creado', user.email, 'success');
       return response.user;
     });
+  }
+
+  updateUser(user: User) {
+    let url = URL_SERVICES + 'users/' + user._id;
+    url += '?token=' + this.token;
+    return this.http.put(url, user).map((response: any) => {
+      swal('Datos actualizados', user.name, 'success');
+      this.user = response.user;
+      this.saveStorage(this.user._id, this.token, this.user);
+      return true;
+    });
+  }
+
+  updateImage(file: File, id: string) {
+    this.uploadFileService
+      .uploadFile(file, 'users', id)
+      .then((response: any) => {
+        this.user.img = response.user.img;
+        swal('Imágen actualizada', this.user.name, 'success');
+        this.saveStorage(id, this.token, response.user);
+        console.log(response);
+      })
+      .catch(error => console.log(error));
   }
 
   saveStorage(id: string, token: string, user: User) {

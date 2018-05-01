@@ -1,3 +1,4 @@
+import { ProfileComponent } from './profile/profile.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -26,6 +27,13 @@ const pagesRoutes: Routes = [
         component: AccountSettingsComponent,
         data: {
           title: 'Account Settings'
+        }
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        data: {
+          title: 'Profile'
         }
       },
       {

@@ -49,10 +49,7 @@ export class LoginComponent implements OnInit {
 
   attachSignIn(element) {
     this.auth2.attachClickHandler(element, {}, googleUser => {
-      // const profile = googleUser.getBasicProfile();
-      // console.log(profile);
       const token = googleUser.getAuthResponse().id_token;
-      // console.log(token);
       this.zone.run(() => {
         this.userService
           .loginGoogle(token)
@@ -71,9 +68,5 @@ export class LoginComponent implements OnInit {
     this.userService
       .login(user, f.value.remember)
       .subscribe(response => this.router.navigate(['/dashboard']));
-
-    // console.log(f.valid);
-    // console.log(f.value);
-    // this.router.navigate(['/dashboard']);
   }
 }

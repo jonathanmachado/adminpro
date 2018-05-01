@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-lg-7">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Sample Form with the Icons</h4>
+        <h6 class="card-subtitle">made with bootstrap elements</h6>
+        <form ngNativeValidate #f="ngForm" (submit)="save(f.value)" class="form p-t-20">
+          <div class="form-group">
+            <label for="exampleInputuname">User Name</label>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="ti-user"></i>
+              </div>
+              <input type="text" class="form-control" id="exampleInputuname" placeholder="Username" name="name" required [ngModel]="user.name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="ti-email"></i>
+              </div>
+              <input type="email" class="form-control" [disabled]="user.google" id="exampleInputEmail1" placeholder="Enter email" name="email" [ngModel]="user.email" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="checkbox checkbox-success">
+              <input id="checkbox1" type="checkbox">
+              <label for="checkbox1"> Remember me </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+            <i class="fa fa-save"></i>
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Image of User</h4>
+        <div align="center">
+          <img *ngIf="!imageTemp" [src]="user.img | images" alt="" width="150" />
+          <img *ngIf="imageTemp" [src]="imageTemp" alt="" width="150" />
+        </div>
+        <input type="file" (change)="selectImage($event.target.files[0])">
+
+        <br>
+        <br>
+
+        <button (click)="saveImage()" [disabled]="!imageUpload" type="button" class="btn btn-success waves-effect waves-light m-r-10">
+          <i class="fa fa-save"></i>
+          Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

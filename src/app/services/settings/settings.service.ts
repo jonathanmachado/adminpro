@@ -3,15 +3,12 @@ import { DOCUMENT } from '@angular/platform-browser';
 
 @Injectable()
 export class SettingsService {
-
   settings: Settings = {
     theme: 'default',
     themeUrl: 'assets/css/colors/default.css'
   };
 
-  constructor(
-    @Inject(DOCUMENT) private _document,
-  ) {
+  constructor(@Inject(DOCUMENT) private _document) {
     this.loadSettings();
   }
 
@@ -21,10 +18,8 @@ export class SettingsService {
 
   loadSettings() {
     if (localStorage.getItem('settings')) {
-      console.log('load value');
       this.settings = JSON.parse(localStorage.getItem('settings'));
     } else {
-      console.log('value default');
     }
     this.setTheme(this.settings.theme);
   }
@@ -38,7 +33,6 @@ export class SettingsService {
 
     this.saveSettings();
   }
-
 }
 
 interface Settings {
