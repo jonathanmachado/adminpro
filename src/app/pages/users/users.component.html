@@ -1,0 +1,68 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+    <div class="card-body">
+      <input type="text" class="form-control" placeholder="Buscar usuario" #input (keyup)="searchUser(input.value)">
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="loadingUsers">
+  <div class="col-sm-12">
+    <div class="alert alert-warning text-center">
+      <strong>Cargando</strong>
+      <br>
+      <i class="fa fa-refresh fa-spin fa-2x"></i>
+      <br>
+      <span>Espere por favor</span>
+    </div>
+  </div>
+</div>
+
+<div class="row animated fadeIn" *ngIf="!loadingUsers">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Usuarios Registrados (<small>{{totalRegister}}</small>)</h3>
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <th>Correo</th>
+              <th>Nombre</th>
+              <th>Role</th>
+              <th>Auth</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td class="w-70">
+                <img [src]="user.img | images" [alt]="user.name" class="img-50 img-circle pointer" (click)="showModal(user._id)">
+              </td>
+              <td>{{user.email}}</td>
+              <td>{{user.name}}</td>
+              <td>
+                <select name="role" class="form-control" [(ngModel)]="user.role">
+                  <option value="ADMIN_ROLE">Admin</option>
+                  <option value="USER_ROLE">User</option>
+                </select>
+              </td>
+              <td>
+                <label *ngIf="user.google" class="label label-danger">Google</label>
+                <label *ngIf="!user.google" class="label label-info">Normal</label>
+              </td>
+              <td>
+                <button class="btn btn-primary" (click)="saveUser(user)"><i class="fa fa-save"></i></button>
+                <button class="btn btn-danger" (click)="deleteUser(user)"><i class="fa fa-trash"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button (click)="changeOffset(-5)" class="btn btn-secondary">Anteriores</button>
+        <button (click)="changeOffset(5)" class="btn btn-secondary">Siguientes</button>
+      </div>
+    </div>
+  </div>
+</div>

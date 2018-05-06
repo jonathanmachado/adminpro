@@ -1,3 +1,4 @@
+import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
@@ -27,6 +28,13 @@ const pagesRoutes: Routes = [
         component: AccountSettingsComponent,
         data: {
           title: 'Account Settings'
+        }
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+        data: {
+          title: 'Users'
         }
       },
       {

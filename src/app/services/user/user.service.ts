@@ -33,9 +33,11 @@ export class UserService {
     let url = URL_SERVICES + 'users/' + user._id;
     url += '?token=' + this.token;
     return this.http.put(url, user).map((response: any) => {
+      if (user._id === this.user._id) {
+        this.user = response.user;
+        this.saveStorage(this.user._id, this.token, this.user);
+      }
       swal('Datos actualizados', user.name, 'success');
-      this.user = response.user;
-      this.saveStorage(this.user._id, this.token, this.user);
       return true;
     });
   }
@@ -108,5 +110,20 @@ export class UserService {
       this.saveStorage(response.id, response.token, response.user);
       return true;
     });
+  }
+
+  loadUsers(offset: number = 0) {
+    const url = URL_SERVICES + 'users?offset=' + offset;
+    return this.http.get(url);
+  }
+
+  searchByCollection(search: string) {
+    const url = URL_SERVICES + 'search/collection/users/' + search;
+    return this.http.get(url).map((response: any) => response.users);
+  }
+
+  deleteUser(id: string) {
+    const url = URL_SERVICES + 'users/' + id + '?token=' + this.token;
+    return this.http.delete(url);
   }
 }
