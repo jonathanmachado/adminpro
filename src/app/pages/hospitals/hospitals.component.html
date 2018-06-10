@@ -1,0 +1,48 @@
+<div class="row animated fadeIn">
+  <div class="col-12">
+    <div class="card">
+    <div class="card-body">
+      <input type="text" class="form-control" placeholder="Buscar usuario" #input (keyup)="searchHospital(input.value)">
+    </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+    <div class="card-body">
+      <div class="text-right">
+          <button type="button" (click)="createHospital()" class="btn waves-effect waves-light btn-rounded btn-primary"><i class="fa fa-plus"></i> Crear Hospital</button>
+      </div>
+
+      <h3 class="card-title">Hospitales Registrados (<small>{{totalHospitals}}</small>)</h3>
+
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Foto</th>
+            <th>Hospital</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let hospital of hospitals">
+            <td class="w-70">
+                <img [src]="hospital.img | images:'hospitals'" [alt]="hospital.name" class="img-50 pointer" (click)="showModal(hospital._id)">
+              </td>
+            <td>
+              <input type="text" class="form-control" placeholder="Nombre Hospital" name="name" [(ngModel)]="hospital.name">
+            </td>
+            <td>
+                <button class="btn btn-primary" (click)="saveHospital(hospital)"><i class="fa fa-save"></i></button>
+                <button class="btn btn-danger" (click)="deleteHospital(hospital)"><i class="fa fa-trash"></i></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    </div>
+  </div>
+</div>

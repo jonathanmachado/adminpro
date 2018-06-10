@@ -1,3 +1,6 @@
+import { DoctorComponent } from './doctors/doctor.component';
+import { DoctorsComponent } from './doctors/doctors.component';
+import { HospitalsComponent } from './hospitals/hospitals.component';
 import { UsersComponent } from './users/users.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
@@ -28,6 +31,27 @@ const pagesRoutes: Routes = [
         component: AccountSettingsComponent,
         data: {
           title: 'Account Settings'
+        }
+      },
+      {
+        path: 'hospitals',
+        component: HospitalsComponent,
+        data: {
+          title: 'Hospitals'
+        }
+      },
+      {
+        path: 'doctors',
+        component: DoctorsComponent,
+        data: {
+          title: 'doctors'
+        }
+      },
+      {
+        path: 'doctor/:id',
+        component: DoctorComponent,
+        data: {
+          title: 'doctor'
         }
       },
       {

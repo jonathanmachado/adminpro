@@ -19,10 +19,10 @@ export class ImagesPipe implements PipeTransform {
         url += '/users/' + image;
         break;
       case 'doctors':
-        url += '/users/' + image;
+        url += '/doctors/' + image;
         break;
       case 'hospitals':
-        url += '/users/' + image;
+        url += '/hospitals/' + image;
 
         break;
 
