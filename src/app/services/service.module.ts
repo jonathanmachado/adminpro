@@ -9,6 +9,7 @@ import {
   SettingsService,
   UserService,
   LoginGuardGuard,
+  AdminGuard,
   UploadFileService,
   HospitalService,
   DoctorService
@@ -23,6 +24,7 @@ import {
     SharedService,
     SidebarService,
     LoginGuardGuard,
+    AdminGuard,
     UploadFileService,
     ModalUploadService,
     HospitalService,

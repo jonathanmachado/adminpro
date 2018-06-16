@@ -1,3 +1,4 @@
+import { SearchComponent } from './search/search.component';
 import { DoctorComponent } from './doctors/doctor.component';
 import { DoctorsComponent } from './doctors/doctors.component';
 import { HospitalsComponent } from './hospitals/hospitals.component';
@@ -11,7 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { PromesasComponent } from './promesas/promesas.component';
-import { LoginGuardGuard } from '../services/service.index';
+import { LoginGuardGuard, AdminGuard } from '../services/service.index';
 
 const pagesRoutes: Routes = [
   {
@@ -57,6 +58,7 @@ const pagesRoutes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
+        canActivate: [AdminGuard],
         data: {
           title: 'Users'
         }
@@ -66,6 +68,13 @@ const pagesRoutes: Routes = [
         component: ProfileComponent,
         data: {
           title: 'Profile'
+        }
+      },
+      {
+        path: 'search/:search',
+        component: SearchComponent,
+        data: {
+          title: 'Buscador'
         }
       },
       {
