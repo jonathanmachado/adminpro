@@ -6,6 +6,8 @@ import { User } from '../../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { URL_SERVICES } from '../../config/config';
 
+import swal from 'sweetalert';
+
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Observable } from 'rxjs/Observable';
@@ -52,6 +54,7 @@ export class UserService {
         return true;
       })
       .catch(error => {
+        console.log(error);
         swal(error.error.message, error.error.errors.message, 'error');
         return Observable.throw(error);
       });
@@ -162,5 +165,26 @@ export class UserService {
   deleteUser(id: string) {
     const url = URL_SERVICES + 'users/' + id + '?token=' + this.token;
     return this.http.delete(url);
+  }
+
+  reloadToken() {
+    const url = URL_SERVICES + 'login/reloadToken?token=' + this.token;
+    return this.http
+      .get(url)
+      .map((response: any) => {
+        this.token = response.token;
+        console.log('Token renovado');
+        localStorage.setItem('token', response.token);
+        return true;
+      })
+      .catch(error => {
+        this.router.navigate(['/login']);
+        swal(
+          'Error no se pudo renovar token',
+          'No fue posible renovar el token',
+          'error'
+        );
+        return Observable.throw(error);
+      });
   }
 }

@@ -2,12 +2,9 @@ import { User } from './../models/user.model';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import * as _swal from 'sweetalert';
-import { SweetAlert } from 'sweetalert/typings/core';
+import swal from 'sweetalert';
 import { UserService } from '../services/service.index';
 import { Router } from '@angular/router';
-
-const swal: SweetAlert = _swal as any;
 
 declare function init_plugins();
 

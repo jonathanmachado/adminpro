@@ -1,3 +1,4 @@
+export { ReloadTokenGuard } from './guards/reload-token.guard';
 export { DoctorService } from './doctor/doctor.service';
 export { HospitalService } from './hospital/hospital.service';
 export { UploadFileService } from './uploadFile/upload-file.service';

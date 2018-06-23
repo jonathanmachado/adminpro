@@ -1,3 +1,4 @@
+import { ModalUploadComponent } from './../components/modal-upload/modal-upload.component';
 import { PipesModule } from './../pipes/pipes.module';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { HeaderComponent } from './header/header.component';
@@ -13,13 +14,15 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
     BreadcrumbsComponent,
     SidebarComponent,
-    NopagefoundComponent
+    NopagefoundComponent,
+    ModalUploadComponent
   ],
   exports: [
     HeaderComponent,
     BreadcrumbsComponent,
     SidebarComponent,
-    NopagefoundComponent
+    NopagefoundComponent,
+    ModalUploadComponent
   ]
 })
 export class SharedModule {}

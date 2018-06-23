@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-// tslint:disable-next-line:import-blacklist
-import { Observable, Subscription } from 'rxjs/Rx';
+import { Subscription } from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/retry';
 
 @Component({
   selector: 'app-rxjs',
@@ -8,31 +11,24 @@ import { Observable, Subscription } from 'rxjs/Rx';
   styles: []
 })
 export class RxjsComponent implements OnInit, OnDestroy {
-
   private subs: Subscription;
 
   constructor() {
-
-
-
-    this.subs = this.returnObserver()
-      .subscribe(
-        numero => console.log(numero),
-        error => console.error(error),
-        () => console.log('Finish')
-      );
-
+    this.subs = this.returnObserver().subscribe(
+      numero => console.log(numero),
+      error => console.error(error),
+      () => console.log('Finish')
+    );
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnDestroy() {
     this.subs.unsubscribe();
   }
 
   returnObserver(): Observable<any> {
-    return new Observable( observer => {
+    return new Observable(observer => {
       let counter = 0;
       const interval = setInterval(() => {
         counter += 1;
@@ -51,11 +47,9 @@ export class RxjsComponent implements OnInit, OnDestroy {
         //   observer.error('error');
         // }
       }, 500);
-
     })
-    .map((value: any) => value.value)
-    .filter(value => value % 2 !== 0)
-    .retry(2);
+      .map((value: any) => value.value)
+      .filter(value => value % 2 !== 0)
+      .retry(2);
   }
-
 }

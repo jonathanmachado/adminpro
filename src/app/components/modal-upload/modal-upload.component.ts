@@ -1,6 +1,7 @@
 import { ModalUploadService } from './modal-upload.service';
 import { UploadFileService } from './../../services/uploadFile/upload-file.service';
 import { Component, OnInit } from '@angular/core';
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-modal-upload',

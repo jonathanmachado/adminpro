@@ -12,105 +12,103 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { PromesasComponent } from './promesas/promesas.component';
-import { LoginGuardGuard, AdminGuard } from '../services/service.index';
+import {
+  LoginGuardGuard,
+  AdminGuard,
+  ReloadTokenGuard
+} from '../services/service.index';
 
 const pagesRoutes: Routes = [
   {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [ReloadTokenGuard],
+    data: {
+      title: 'Dashboard'
+    }
+  },
+  {
+    path: 'account-settings',
+    component: AccountSettingsComponent,
+    data: {
+      title: 'Account Settings'
+    }
+  },
+  {
+    path: 'hospitals',
+    component: HospitalsComponent,
+    data: {
+      title: 'Hospitals'
+    }
+  },
+  {
+    path: 'doctors',
+    component: DoctorsComponent,
+    data: {
+      title: 'doctors'
+    }
+  },
+  {
+    path: 'doctor/:id',
+    component: DoctorComponent,
+    data: {
+      title: 'doctor'
+    }
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
+    canActivate: [AdminGuard],
+    data: {
+      title: 'Users'
+    }
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+    data: {
+      title: 'Profile'
+    }
+  },
+  {
+    path: 'search/:search',
+    component: SearchComponent,
+    data: {
+      title: 'Buscador'
+    }
+  },
+  {
+    path: 'progress',
+    component: ProgressComponent,
+    data: {
+      title: 'Progress Bars'
+    }
+  },
+  {
+    path: 'graficas1',
+    component: Graficas1Component,
+    data: {
+      title: 'Gráficas'
+    }
+  },
+  {
+    path: 'promesas',
+    component: PromesasComponent,
+    data: {
+      title: 'Promesas'
+    }
+  },
+  {
+    path: 'rxjs',
+    component: RxjsComponent,
+    data: {
+      title: 'RxJs'
+    }
+  },
+  {
     path: '',
-    component: PagesComponent,
-    canActivate: [LoginGuardGuard],
-    children: [
-      {
-        path: 'dashboard',
-        component: DashboardComponent,
-        data: {
-          title: 'Dashboard'
-        }
-      },
-      {
-        path: 'account-settings',
-        component: AccountSettingsComponent,
-        data: {
-          title: 'Account Settings'
-        }
-      },
-      {
-        path: 'hospitals',
-        component: HospitalsComponent,
-        data: {
-          title: 'Hospitals'
-        }
-      },
-      {
-        path: 'doctors',
-        component: DoctorsComponent,
-        data: {
-          title: 'doctors'
-        }
-      },
-      {
-        path: 'doctor/:id',
-        component: DoctorComponent,
-        data: {
-          title: 'doctor'
-        }
-      },
-      {
-        path: 'users',
-        component: UsersComponent,
-        canActivate: [AdminGuard],
-        data: {
-          title: 'Users'
-        }
-      },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-        data: {
-          title: 'Profile'
-        }
-      },
-      {
-        path: 'search/:search',
-        component: SearchComponent,
-        data: {
-          title: 'Buscador'
-        }
-      },
-      {
-        path: 'progress',
-        component: ProgressComponent,
-        data: {
-          title: 'Progress Bars'
-        }
-      },
-      {
-        path: 'graficas1',
-        component: Graficas1Component,
-        data: {
-          title: 'Gráficas'
-        }
-      },
-      {
-        path: 'promesas',
-        component: PromesasComponent,
-        data: {
-          title: 'Promesas'
-        }
-      },
-      {
-        path: 'rxjs',
-        component: RxjsComponent,
-        data: {
-          title: 'RxJs'
-        }
-      },
-      {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full'
-      }
-    ]
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
   }
 ];
 
